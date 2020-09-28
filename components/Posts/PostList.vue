@@ -1,18 +1,12 @@
 <template>
-  <section class="post-list">
+  <section class="post-list" v-if="posts.length">
     <PostPreview
-      id="1"
-      thumbnail="https://static6.depositphotos.com/1003229/609/v/450/depositphotos_6096843-stock-illustration-circuit-board-vector-background.jpg"
-      title="First"
-      previewText="First post"
-      :is-admin="isAdmin"
-    />
-
-    <PostPreview
-      id="2"
-      thumbnail="https://static6.depositphotos.com/1003229/609/v/450/depositphotos_6096843-stock-illustration-circuit-board-vector-background.jpg"
-      title="Second"
-      previewText="Second post"
+      v-for="post in posts"
+      :key="post.id"
+      :id="post.id"
+      :thumbnail="post.thumbnail"
+      :title="post.title"
+      :previewText="post.previewText"
       :is-admin="isAdmin"
     />
   </section>
@@ -28,6 +22,10 @@ export default {
     isAdmin: {
       type: Boolean,
       default: false
+    },
+    posts: {
+      type: Array,
+      required: true
     }
   }
 };
